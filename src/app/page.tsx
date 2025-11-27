@@ -15,6 +15,7 @@ import { Metadata } from "next";
 import ScrollUp from "@/components/ScrollUp";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
+import CryptoPrices from "@/components/CryptoPrices";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -40,14 +41,6 @@ export default function Home() {
       <Contact />
       <Clients />
       <CryptoPrices />
-    </main>
-    import CryptoPrices from "@/components/CryptoPrices";
-
-export default function Home() {
-  return (
-    <main className="bg-gray-900 text-white min-h-screen">
-      <Hero />
-      <CryptoPrices />  // ← этот блок должен быть
     </main>
   );
 }
