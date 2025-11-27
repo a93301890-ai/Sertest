@@ -35,7 +35,7 @@ export default function CryptoPrices() {
   }, []);
 
   return (
-    <section className="text-white bg-gray-900 p-6 rounded-lg mt-8">
+    <section className="text-red bg-gray-900 p-6 rounded-lg mt-8">
       <h2 className="text-xl font-bold mb-4">Актуальные курсы криптовалют</h2>
 
       {error && (
