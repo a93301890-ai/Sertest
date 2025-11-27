@@ -3,11 +3,13 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { signOut, useSession } from "next-auth/react";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
   const { data: session } = useSession();
   const [sticky, setSticky] = useState(false);
+  const pathUrl = usePathname();
 
   return (
     <header className="fixed top-0 left-0 z-50 w-full bg-black/80 backdrop-blur-md shadow-md">
