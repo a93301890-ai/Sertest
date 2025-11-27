@@ -14,13 +14,24 @@ const Hero = () => {
               className="hero-content wow fadeInUp mx-auto max-w-[780px] text-center px-4"
               data-wow-delay=".2s"
             >
-              <h1 className="mb-6 text-3xl font-bold leading-snug text-white sm:text-4xl sm:leading-snug lg:text-5xl lg:leading-[1.2]">
+              {/* Иконка биткоина сверху */}
+              <div className="flex justify-center mb-6">
+                <Image
+                  src="/bitcoin-icon.png" // положи картинку в папку public
+                  alt="Bitcoin Icon"
+                  width={64}
+                  height={64}
+                  className="drop-shadow-lg"
+                />
+              </div>
+
+              <h1 className="mb-6 text-3xl font-bold leading-snug text-white sm:text-4xl lg:text-5xl lg:leading-[1.2]">
                 Добро пожаловать в мир криптовалют!  
                 Биткоин — первая и самая известная цифровая валюта, которая изменила представление о финансах.  
                 Здесь вы найдёте актуальные курсы, графики и аналитику, а также сможете узнать, как работают криптобиржи.
               </h1>
 
-              <p className="mx-auto mb-6 max-w-[600px] text-base font-medium text-white sm:text-lg sm:leading-[1.44]">
+              <p className="mx-auto mb-6 max-w-[600px] text-base font-medium text-white/80 sm:text-lg">
                 Биржа криптовалют — это площадка, где пользователи покупают и продают биткоины и другие токены.  
                 Она обеспечивает прозрачность сделок, безопасность хранения и быстрый обмен активов.
               </p>
@@ -29,6 +40,7 @@ const Hero = () => {
                 Следите за курсами Bitcoin, Ethereum и других криптовалют. Аналитика, новости и тренды.
               </p>
 
+              {/* Кнопки */}
               <ul className="mb-10 flex flex-wrap items-center justify-center gap-5">
                 <li>
                   <Link
@@ -47,6 +59,11 @@ const Hero = () => {
                   </Link>
                 </li>
               </ul>
+
+              {/* Анимированная стрелка вниз */}
+              <div className="flex justify-center">
+                <span className="animate-bounce text-white text-3xl">↓</span>
+              </div>
             </div>
           </div>
         </div>
