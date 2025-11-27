@@ -23,7 +23,7 @@ export default function Home() {
   const posts = getAllPosts(["title", "date", "excerpt", "coverImage", "slug"]);
 
   return (
-    <main className="bg-gradient-to-r from-purple-900 via-black to-indigo-900 text-white min-h-screen">
+<main className="bg-gradient-to-r from-purple-900 via-black to-indigo-900 text-white min-h-screen">
   <ScrollUp />
   <Hero />
   <CryptoPrices />
