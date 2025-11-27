@@ -10,17 +10,13 @@ import Hero from "@/components/Hero";
 import Pricing from "@/components/Pricing";
 import Team from "@/components/Team";
 import Testimonials from "@/components/Testimonials";
-import { getAllPosts } from "@/utils/markdown";
-import { Metadata } from "next";
-import ScrollUp from "@/components/ScrollUp";
-import Hero from "@/components/Hero";
-import Features from "@/components/Features";
 import CryptoPrices from "@/components/CryptoPrices";
+import { getAllPosts } from "@/utils/markdown";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Блокчейн и криптовалюты: Технологии, меняющие мир. Погрузитесь в инновации децентрализованных финансов и WEB3 ",
-  description: "Инвистируйте в цифровые активы с умом.",
+  title: "Блокчейн и криптовалюты: Технологии, меняющие мир. Погрузитесь в инновации децентрализованных финансов и WEB3",
+  description: "Инвестируйте в цифровые активы с умом.",
 };
 
 export default function Home() {
@@ -40,9 +36,7 @@ export default function Home() {
       <HomeBlogSection posts={posts} />
       <Contact />
       <Clients />
-      <CryptoPrices />
+      <CryptoPrices /> {/* ← теперь блок точно вставлен */}
     </main>
-  );
-}
   );
 }
