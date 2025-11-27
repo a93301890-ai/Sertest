@@ -11,6 +11,14 @@ import Pricing from "@/components/Pricing";
 import Team from "@/components/Team";
 import Testimonials from "@/components/Testimonials";
 import { getAllPosts } from "@/utils/markdown";
+import CryptoPrices from "@/components/CryptoPrices";
+
+<main>
+  <ScrollUp />
+  <Hero />
+  <CryptoPrices />
+  <Features />
+</main>
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
