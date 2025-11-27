@@ -63,7 +63,7 @@ const Hero = () => {
 
                 <div>
                   <p className="mb-4 text-center text-base font-medium text-white/60">
-                    Использование криптовалюты активно используется 
+                     Следите за курсами Bitcoin, Ethereum и других криптовалют. Аналитика, новости и тренды.
                   </p>
                   <div
                     className="wow fadeInUp flex items-center justify-center gap-4 text-center"
