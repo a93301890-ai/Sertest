@@ -11,14 +11,27 @@ import Pricing from "@/components/Pricing";
 import Team from "@/components/Team";
 import Testimonials from "@/components/Testimonials";
 import { getAllPosts } from "@/utils/markdown";
+import { Metadata } from "next";
+import ScrollUp from "@/components/ScrollUp";
+import Hero from "@/components/Hero";
+import Features from "@/components/Features";
 import CryptoPrices from "@/components/CryptoPrices";
 
-<main>
-  <ScrollUp />
-  <Hero />
-  <CryptoPrices />
-  <Features />
-</main>
+export const metadata: Metadata = {
+  title: "Криптовалюты и блокчейн: курсы и аналитика",
+  description: "Актуальные цены BTC, ETH, USDT и аналитика трендов.",
+};
+
+export default function Home() {
+  return (
+    <main>
+      <ScrollUp />
+      <Hero />
+      <CryptoPrices />
+      <Features />
+    </main>
+  );
+}
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
