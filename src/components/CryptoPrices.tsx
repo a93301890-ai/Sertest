@@ -36,24 +36,24 @@ export default function CryptoPrices() {
   }
 
   return (
-    <section className="bg-gray-900 text-white p-6 rounded-lg mt-8">
+    <section className="backdrop-blur-md bg-white/5 border border-white/10 text-white p-6 rounded-2xl shadow-2xl mt-6 max-w-5xl mx-auto">
       <h2 className="text-xl font-bold mb-4">Актуальные курсы криптовалют</h2>
       <ul className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <li className="rounded-md bg-gray-800 p-4">
+        <li className="rounded-xl bg-gradient-to-br from-gray-800 via-gray-900 to-black p-5 shadow-lg border border-white/10 hover:scale-[1.02] transition-transform">
           <p className="text-sm text-gray-300">Bitcoin (BTC)</p>
           <p className="text-2xl font-semibold">${prices.bitcoin?.usd?.toFixed(2)}</p>
           <p className={changeClass(prices.bitcoin?.usd_24h_change)}>
             {formatChange(prices.bitcoin?.usd_24h_change)}
           </p>
         </li>
-        <li className="rounded-md bg-gray-800 p-4">
+        <li className="rounded-xl bg-gradient-to-br from-gray-800 via-gray-900 to-black p-5 shadow-lg border border-white/10 hover:scale-[1.02] transition-transform">
           <p className="text-sm text-gray-300">Ethereum (ETH)</p>
           <p className="text-2xl font-semibold">${prices.ethereum?.usd?.toFixed(2)}</p>
           <p className={changeClass(prices.ethereum?.usd_24h_change)}>
             {formatChange(prices.ethereum?.usd_24h_change)}
           </p>
         </li>
-        <li className="rounded-md bg-gray-800 p-4">
+        <li className="rounded-xl bg-gradient-to-br from-gray-800 via-gray-900 to-black p-5 shadow-lg border border-white/10 hover:scale-[1.02] transition-transform">
           <p className="text-sm text-gray-300">Tether (USDT)</p>
           <p className="text-2xl font-semibold">${prices.tether?.usd?.toFixed(2)}</p>
           <p className={changeClass(prices.tether?.usd_24h_change)}>
@@ -68,7 +68,8 @@ export default function CryptoPrices() {
 function formatChange(val?: number) {
   if (val === undefined) return "";
   const sign = val >= 0 ? "+" : "";
-  return `${sign}${val.toFixed(2)}% за 24ч`;
+  const arrow = val >= 0 ? "↑" : "↓";
+  return `${arrow} ${sign}${val.toFixed(2)}% за 24ч`;
 }
 
 function changeClass(val?: number) {
