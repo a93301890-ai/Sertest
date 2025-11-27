@@ -23,7 +23,7 @@ export default function Home() {
   const posts = getAllPosts(["title", "date", "excerpt", "coverImage", "slug"]);
 
   return (
-    <main>
+    <main className="bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 text-white min-h-screen">
       <ScrollUp />
       <Hero />
       <CryptoPrices /> {/* ← теперь блок точно вставлен */}
