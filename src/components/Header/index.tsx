@@ -16,6 +16,33 @@ const Header = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  async function handleSignIn() {
+  setErrorMsg(null);
+  if (!email || !password) {
+    setErrorMsg("Введите email и пароль.");
+    return;
+  }
+  setLoading(true);
+  try {
+    const res = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+      callbackUrl: "/",
+    });
+    if (res?.error) {
+      setErrorMsg("Неверные данные.");
+    } else {
+      setShowLoginForm(false);
+      setEmail("");
+      setPassword("");
+    }
+  } catch {
+    setErrorMsg("Ошибка входа.");
+  } finally {
+    setLoading(false);
+  }
+}
 
   return (
     <header className="fixed top-0 left-0 z-50 w-full bg-black/80 backdrop-blur-md shadow-md">
@@ -114,33 +141,6 @@ const Header = () => {
     </button>
   </div>
 )}
-          async function handleSignIn() {
-  setErrorMsg(null);
-  if (!email || !password) {
-    setErrorMsg("Введите email и пароль.");
-    return;
-  }
-  setLoading(true);
-  try {
-    const res = await signIn("credentials", {
-      email,
-      password,
-      redirect: false,
-      callbackUrl: "/",
-    });
-    if (res?.error) {
-      setErrorMsg("Неверные данные.");
-    } else {
-      setShowLoginForm(false);
-      setEmail("");
-      setPassword("");
-    }
-  } catch {
-    setErrorMsg("Ошибка входа.");
-  } finally {
-    setLoading(false);
-  }
-}
 
           {/* theme toggler */}
           <button
