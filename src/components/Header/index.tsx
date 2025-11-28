@@ -16,6 +16,12 @@ const Header = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [showSignupForm, setShowSignupForm] = useState(false);
+  const [signupName, setSignupName] = useState("");
+  const [signupEmail, setSignupEmail] = useState("");
+  const [signupPassword, setSignupPassword] = useState("");
+  const [signupLoading, setSignupLoading] = useState(false);
+  const [signupMsg, setSignupMsg] = useState<string | null>(null);
   async function handleSignIn() {
   setErrorMsg(null);
   if (!email || !password) {
@@ -105,12 +111,12 @@ const Header = () => {
 >
   Sign In
 </button>
-              <Link
-                href="/signup"
-                className="rounded-lg bg-yellow-500 px-5 py-2 text-base font-medium text-black hover:bg-yellow-600 transition"
-              >
-                Sign Up
-              </Link>
+              <button
+  onClick={() => setShowSignupForm((v) => !v)}
+  className="rounded-lg bg-yellow-500 px-5 py-2 text-base font-medium text-black hover:bg-yellow-600 transition"
+>
+  Sign Up
+</button>
             </>
           )}
           {showLoginForm && (
