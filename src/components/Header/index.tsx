@@ -10,6 +10,11 @@ const Header = () => {
   const { data: session } = useSession();
   const [sticky, setSticky] = useState(false);
   const pathUrl = usePathname();
+  const [showLoginForm, setShowLoginForm] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   return (
     <header className="fixed top-0 left-0 z-50 w-full bg-black/80 backdrop-blur-md shadow-md">
@@ -66,12 +71,12 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link
-                href="/signin"
-                className="px-5 py-2 text-base font-medium text-white hover:text-yellow-400 transition"
-              >
-                Sign In
-              </Link>
+              <button
+  onClick={() => setShowLoginForm((v) => !v)}
+  className="px-5 py-2 text-base font-medium text-white hover:text-yellow-400 transition"
+>
+  Sign In
+</button>
               <Link
                 href="/signup"
                 className="rounded-lg bg-yellow-500 px-5 py-2 text-base font-medium text-black hover:bg-yellow-600 transition"
