@@ -49,6 +49,40 @@ const Header = () => {
     setLoading(false);
   }
 }
+  async function handleSignup() {
+  setSignupMsg(null);
+  if (!signupEmail || !signupPassword) {
+    setSignupMsg("Введите email и пароль.");
+    return;
+  }
+  setSignupLoading(true);
+  try {
+    const res = await fetch("/api/auth/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: signupEmail,
+        password: signupPassword,
+        name: signupName,
+      }),
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      setSignupMsg(`Регистрация успешна! Ваш ID: ${data.userId}`);
+      setSignupEmail("");
+      setSignupPassword("");
+      setSignupName("");
+      setShowSignupForm(false);
+    } else {
+      setSignupMsg(data.error || "Ошибка регистрации");
+    }
+  } catch {
+    setSignupMsg("Ошибка сервера.");
+  } finally {
+    setSignupLoading(false);
+  }
+}
 
   return (
     <header className="fixed top-0 left-0 z-50 w-full bg-black/80 backdrop-blur-md shadow-md">
@@ -119,6 +153,45 @@ const Header = () => {
 </button>
             </>
           )}
+          {showSignupForm && (
+  <div className="absolute top-full right-0 mt-2 w-80 rounded-lg bg-white p-4 shadow-lg z-50 dark:bg-dark-2">
+    <h4 className="mb-3 text-sm font-semibold text-neutral-800 dark:text-neutral-200">Регистрация</h4>
+
+    <input
+      type="text"
+      placeholder="Имя"
+      value={signupName}
+      onChange={(e) => setSignupName(e.target.value)}
+      className="mb-3 w-full rounded border px-3 py-2 text-sm text-black dark:text-white dark:bg-dark-3"
+    />
+    <input
+      type="email"
+      placeholder="Email"
+      value={signupEmail}
+      onChange={(e) => setSignupEmail(e.target.value)}
+      className="mb-3 w-full rounded border px-3 py-2 text-sm text-black dark:text-white dark:bg-dark-3"
+    />
+    <input
+      type="password"
+      placeholder="Пароль"
+      value={signupPassword}
+      onChange={(e) => setSignupPassword(e.target.value)}
+      className="mb-3 w-full rounded border px-3 py-2 text-sm text-black dark:text-white dark:bg-dark-3"
+    />
+
+    {signupMsg && (
+      <p className="mb-2 text-sm text-red-600 dark:text-red-400">{signupMsg}</p>
+    )}
+
+    <button
+      onClick={handleSignup}
+      disabled={signupLoading}
+      className="w-full rounded bg-yellow-500 px-4 py-2 text-sm font-medium text-black hover:bg-yellow-600 transition disabled:opacity-50"
+    >
+      {signupLoading ? "Регистрируем..." : "Зарегистрироваться"}
+    </button>
+  </div>
+)}
           {showLoginForm && (
   <div className="absolute top-full right-6 mt-2 w-72 rounded-lg bg-white p-4 shadow-lg z-50 dark:bg-dark-2">
     <input
