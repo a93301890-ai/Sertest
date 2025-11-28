@@ -25,8 +25,7 @@ export const authOptions: NextAuthOptions = {
       credentials: {
         email: { label: "Email", type: "text", placeholder: "Jhondoe" },
         password: { label: "Password", type: "password" },
-        username: { label: "Username", type: "text", placeholder: "Jhon Doe" },
-      },
+      }, 
 
       async authorize(credentials) {
         // check to see if email and password is there
@@ -87,32 +86,25 @@ export const authOptions: NextAuthOptions = {
   ],
 
   callbacks: {
-    jwt: async (payload: any) => {
-      const { token } = payload;
-      const user = payload.user;
-
-      if (user) {
-        return {
-          ...token,
-          id: user.id,
-        };
-      }
-      return token;
-    },
-
-    session: async ({ session, token }) => {
-      if (session?.user) {
-        return {
-          ...session,
-          user: {
-            ...session.user,
-            id: token?.id,
-          },
-        };
-      }
-      return session;
-    },
+    jwt: async ({ token, user }) => {
+  if (user) {
+    callbacks: {
+  async jwt({ token, user }) {
+    if (user) {
+      token.id = user.id;
+      token.email = user.email;
+    }
+    return token;
   },
+
+  async session({ session, token }) {
+    if (token && session.user) {
+      session.user.id = token.id;
+      session.user.email = token.email;
+    }
+    return session;
+  },
+},
 
   // debug: process.env.NODE_ENV === "developement",
 };
