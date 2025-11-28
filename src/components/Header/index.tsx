@@ -4,6 +4,7 @@ import { useTheme } from "next-themes";
 import { signOut, useSession } from "next-auth/react";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
@@ -85,6 +86,61 @@ const Header = () => {
               </Link>
             </>
           )}
+          {showLoginForm && (
+  <div className="absolute top-full right-6 mt-2 w-72 rounded-lg bg-white p-4 shadow-lg z-50 dark:bg-dark-2">
+    <input
+      type="email"
+      placeholder="Email"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      className="mb-3 w-full rounded border px-3 py-2 text-sm text-black dark:text-white dark:bg-dark-3"
+    />
+    <input
+      type="password"
+      placeholder="Пароль"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      className="mb-3 w-full rounded border px-3 py-2 text-sm text-black dark:text-white dark:bg-dark-3"
+    />
+    {errorMsg && (
+      <p className="mb-2 text-sm text-red-600 dark:text-red-400">{errorMsg}</p>
+    )}
+    <button
+      onClick={handleSignIn}
+      disabled={loading}
+      className="w-full rounded bg-yellow-500 px-4 py-2 text-sm font-medium text-black hover:bg-yellow-600 transition disabled:opacity-50"
+    >
+      {loading ? "Входим..." : "Войти"}
+    </button>
+  </div>
+)}
+          async function handleSignIn() {
+  setErrorMsg(null);
+  if (!email || !password) {
+    setErrorMsg("Введите email и пароль.");
+    return;
+  }
+  setLoading(true);
+  try {
+    const res = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+      callbackUrl: "/",
+    });
+    if (res?.error) {
+      setErrorMsg("Неверные данные.");
+    } else {
+      setShowLoginForm(false);
+      setEmail("");
+      setPassword("");
+    }
+  } catch {
+    setErrorMsg("Ошибка входа.");
+  } finally {
+    setLoading(false);
+  }
+}
 
           {/* theme toggler */}
           <button
